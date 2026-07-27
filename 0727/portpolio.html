@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="강민석의 자기소개 페이지">
+    <meta property="og:description" content="IT/AI 웹 개발자를 꿈꾸는 강민석입니다!">
+    <title>강민석 - 자기소개 페이지</title>
+    <style>
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+        
+        * {
+            font-family: "Pretendard", serif;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1f1c2c, #928DAB);
+            background-attachment: fixed;
+            margin: 0;
+            padding: 40px 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .wrap {
+            width: 100%;
+            max-width: 700px;
+            padding: 40px 30px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .profile {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            border: 3px solid rgba(255, 255, 255, 0.8);
+            /* 본인 사진 이미지 주소로 변경해주세요 */
+            background-image: url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=60');
+            background-position: center;
+            background-size: cover;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            margin-bottom: 15px;
+        }
+
+        .main {
+            color: #ffffff;
+            font-size: 22px;
+            font-weight: 700;
+            margin: 10px 0 8px 0;
+        }
+
+        .sub {
+            color: #e0e0e0;
+            font-size: 13px;
+            font-weight: 400;
+            margin-top: 0;
+            margin-bottom: 25px;
+            line-height: 1.5;
+            padding: 0 5px;
+        }
+
+        /* 미디어 영역 (배너 / 영상 배치) */
+        .media-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .media-box {
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 16px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .media-box h3 {
+            font-size: 14px;
+            margin: 0 0 10px 0;
+            font-weight: 600;
+        }
+
+        /* 유튜브 영상 반응형 비율 컨테이너 */
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 비율 */
+            height: 0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* 빈 공간을 채워줄 홍보/소개 배너 스타일 */
+        .banner-box {
+            width: 100%;
+            background: linear-gradient(135deg, rgba(108, 92, 231, 0.5), rgba(162, 155, 254, 0.5));
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 16px;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .banner-text {
+            text-align: left;
+        }
+
+        .banner-text h4 {
+            margin: 0 0 5px 0;
+            font-size: 15px;
+        }
+
+        .banner-text p {
+            margin: 0;
+            font-size: 12px;
+            color: #e0e0ff;
+        }
+
+        .banner-btn {
+            background: #ffffff;
+            color: #333333;
+            padding: 8px 14px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .banner-btn:hover {
+            background: #333333;
+            color: #ffffff;
+        }
+
+        /* 링크 카드 그리드 영역 */
+        .link-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            width: 100%;
+        }
+
+        .card-button {
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 16px;
+            padding: 18px 10px;
+            color: #ffffff;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .card-button .icon {
+            font-size: 22px;
+        }
+
+        .card-button .title {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .card-button .desc {
+            font-size: 11px;
+            color: #dcdcdc;
+        }
+
+        .card-button:hover {
+            background-color: #6c5ce7;
+            border-color: #6c5ce7;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(108, 92, 231, 0.4);
+        }
+
+        /* 반응형 설정 */
+        @media (max-width: 600px) {
+            .media-container {
+                grid-template-columns: 1fr;
+            }
+            .link-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="profile"></div>
+        <h1 class="main">강민석</h1>
+        <p class="sub">
+            IT/AI 분야를 향해 나아가는 주니어 개발자입니다.<br>
+            멋진 웹 개발자가 되어 나만의 상품 거래 사이트를<br>
+            직접 운영하는 멋진 꿈을 키워가고 있습니다! ✨
+        </p>
+        
+        <!-- 상단 배너 추가 (빈 공간 채우기 및 강조용) -->
+        <div class="banner-box">
+            <div class="banner-text">
+                <h4>💡 함께 성장할 팀원을 찾고 있어요!</h4>
+                <p>웹 개발 및 AI 기술에 관심이 있으시다면 언제든 연락주세요.</p>
+            </div>
+            <a class="banner-btn" target="_blank" href="https://github.com/">연락하기</a>
+        </div>
+
+        <!-- 미디어 추가 영역 (사진/이미지 카드 & 유튜브 영상 카드) -->
+        <div class="media-container">
+            <!-- 사진 추가 영역 -->
+            <div class="media-box">
+                <h3>📸 나의 작업 공간 / 일상</h3>
+                <div class="video-wrapper">
+                    <!-- img 태그나 대체 이미지로 활용 가능 (현재는 예시 이미지) -->
+                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=500&auto=format&fit=crop&q=60" alt="작업 공간" style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; border-radius:10px;">
+                </div>
+            </div>
+            
+            <!-- 유튜브 영상 추가 영역 -->
+            <div class="media-box">
+                <h3>📺 추천 개발 영상</h3>
+                <div class="video-wrapper">
+                    <!-- src 안의 링크에 원하는 유튜브 영상 ID를 입력하세요 -->
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 링크 카드 격자 배열 -->
+        <div class="link-grid">
+            <a class="card-button" target="_blank" href="https://sparta-profile.oopy.io/">
+                <span class="icon">🚀</span>
+                <span class="title">포트폴리오</span>
+                <span class="desc">작업물 보러가기</span>
+            </a>
+            
+            <a class="card-button" target="_blank" href="https://orteil.dashnet.org/cookieclicker/">
+                <span class="icon">🎮</span>
+                <span class="title">재미있는 사이트</span>
+                <span class="desc">쿠키 클릭커 게임</span>
+            </a>
+            
+            <a class="card-button" target="_blank" href="https://github.com/">
+                <span class="icon">💻</span>
+                <span class="title">깃허브</span>
+                <span class="desc">소스 코드 저장소</span>
+            </a>
+
+            <a class="card-button" target="_blank" href="https://www.instagram.com/">
+                <span class="icon">📸</span>
+                <span class="title">인스타그램</span>
+                <span class="desc">일상 소통하기</span>
+            </a>
+
+            <a class="card-button" target="_blank" href="https://velog.io/">
+                <span class="icon">📝</span>
+                <span class="title">기술 블로그</span>
+                <span class="desc">공부 기록 남기기</span>
+            </a>
+
+            <a class="card-button" target="_blank" href="mailto:email@example.com">
+                <span class="icon">✉️</span>
+                <span class="title">이메일 문의</span>
+                <span class="desc">메일 보내기</span>
+            </a>
+        </div>
+    </div>
+</body>
+</html>
