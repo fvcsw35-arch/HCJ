@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <base target="_top">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>교육 만족도 및 자료 신청</title>
+  <style>
+    body {
+      font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+      background-color: #f4f6f9;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .container {
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+      width: 100%;
+      max-width: 440px;
+      box-sizing: border-box;
+      margin: 20px;
+    }
+    h2 {
+      text-align: center;
+      color: #2c3e50;
+      margin-top: 0;
+      margin-bottom: 8px;
+    }
+    .sub-title {
+      text-align: center;
+      color: #7f8c8d;
+      font-size: 13px;
+      margin-bottom: 24px;
+    }
+    .form-group {
+      margin-bottom: 18px;
+    }
+    label {
+      display: block;
+      margin-bottom: 6px;
+      color: #34495e;
+      font-size: 14px;
+      font-weight: bold;
+    }
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #dcdfe6;
+      border-radius: 6px;
+      box-sizing: border-box;
+      font-size: 14px;
+      font-family: inherit;
+      transition: border-color 0.2s;
+    }
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #3498db;
+    }
+    textarea {
+      resize: vertical;
+      height: 70px;
+    }
+    
+    /* 별점 스타일 */
+    .rating-group {
+      display: flex;
+      justify-content: space-between;
+      gap: 5px;
+    }
+    .rating-group input[type="radio"] {
+      display: none;
+    }
+    .rating-group label {
+      flex: 1;
+      text-align: center;
+      background: #f8f9fa;
+      border: 1px solid #dcdfe6;
+      padding: 8px 0;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: normal;
+      font-size: 13px;
+      transition: all 0.2s;
+    }
+    .rating-group input[type="radio"]:checked + label {
+      background-color: #3498db;
+      color: white;
+      border-color: #3498db;
+      font-weight: bold;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: background-color 0.2s;
+    }
+    button:hover {
+      background-color: #2980b9;
+    }
+    button:disabled {
+      background-color: #bdc3c7;
+      cursor: not-allowed;
+    }
+    #result-message {
+      text-align: center;
+      padding: 30px 10px;
+      display: none;
+    }
+    #result-message h3 {
+      color: #2c3e50;
+      margin-bottom: 10px;
+    }
+    #result-message p {
+      color: #7f8c8d;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div id="form-wrapper">
+      <h2>교육 만족도 & 자료 신청</h2>
+      <p class="sub-title">설문에 참여해 주시면 신청하신 이메일로 강의 자료를 보내드립니다.</p>
+      
+      <form id="appForm" onsubmit="handleFormSubmit(event)">
+        <div class="form-group">
+          <label for="name">소속 / 성함 *</label>
+          <input type="text" id="name" name="name" required placeholder="예: 홍길동 (OO학과/OO팀)">
+        </div>
+        
+        <div class="form-group">
+          <label for="email">자료받을 이메일 *</label>
+          <input type="email" id="email" name="email" required placeholder="example@email.com">
+        </div>
+
+        <div class="form-group">
+          <label>오늘 강의는 어떠셨나요? *</label>
+          <div class="rating-group">
+            <input type="radio" id="r5" name="rating" value="5점(매우만족)" required>
+            <label for="r5">매우만족</label>
+            
+            <input type="radio" id="r4" name="rating" value="4점(만족)">
+            <label for="r4">만족</label>
+            
+            <input type="radio" id="r3" name="rating" value="3점(보통)">
+            <label for="r3">보통</label>
+            
+            <input type="radio" id="r2" name="rating" value="2점(아쉬움)">
+            <label for="r2">아쉬움</label>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="feedback">가장 유익했던 점 / 피드백</label>
+          <textarea id="feedback" name="feedback" placeholder="기억에 남는 내용이나 개선 의견을 적어주세요."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="futureTopic">개설을 희망하는 다음 교육 주제</label>
+          <input type="text" id="futureTopic" name="futureTopic" placeholder="예: 생성형 AI 실습, 데이터 분석 기초 등">
+        </div>
+        
+        <button type="submit" id="submitBtn">제출하고 자료 신청하기</button>
+      </form>
+    </div>
+
+    <!-- 완료 메시지 -->
+    <div id="result-message">
+      <h3>제출이 완료되었습니다! 🎉</h3>
+      <p>작성해 주신 소중한 의견은 더 나은 교육을 만드는 데 활용하겠습니다.<br>교육 자료는 확인 후 제출하신 이메일로 발송될 예정입니다.</p>
+    </div>
+  </div>
+
+  <script>
+    let submitTimer = null;
+
+    function handleFormSubmit(event) {
+      event.preventDefault();
+
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const feedback = document.getElementById('feedback').value.trim();
+      const futureTopic = document.getElementById('futureTopic').value.trim();
+      
+      const ratingElement = document.querySelector('input[name="rating"]:checked');
+      const rating = ratingElement ? ratingElement.value : '';
+
+      if (!name || !email || !rating) {
+        alert('필수 항목(* 표시)을 모두 입력 및 선택해 주세요.');
+        return;
+      }
+
+      setLoadingState(true);
+
+      const formData = { name, email, rating, feedback, futureTopic };
+
+      // 15초 응답 타임아웃
+      submitTimer = setTimeout(function() {
+        alert('응답 시간이 초과되었습니다. 다시 시도해 주세요.');
+        setLoadingState(false);
+      }, 15000);
+
+      // 백엔드 Apps Script 호출
+      google.script.run
+        .withSuccessHandler(onSuccess)
+        .withFailureHandler(onFailure)
+        .saveData(formData);
+    }
+
+    function onSuccess(response) {
+      clearTimeout(submitTimer);
+      
+      if (response && response.success) {
+        document.getElementById('form-wrapper').style.display = 'none';
+        document.getElementById('result-message').style.display = 'block';
+      } else {
+        const errorMsg = (response && response.error) ? response.error : '알 수 없는 오류';
+        alert('저장 중 오류가 발생했습니다: ' + errorMsg);
+        setLoadingState(false);
+      }
+    }
+
+    function onFailure(error) {
+      clearTimeout(submitTimer);
+      alert('서버 통신 중 오류가 발생했습니다: ' + error.message);
+      setLoadingState(false);
+    }
+
+    function setLoadingState(isLoading) {
+      const submitBtn = document.getElementById('submitBtn');
+      if (isLoading) {
+        submitBtn.disabled = true;
+        submitBtn.innerText = '제출 중입니다...';
+      } else {
+        submitBtn.disabled = false;
+        submitBtn.innerText = '제출하고 자료 신청하기';
+      }
+    }
+  </script>
+
+</body>
+</html>
