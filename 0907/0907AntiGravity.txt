@@ -1,0 +1,77 @@
+https://www.elancer.co.kr/blog/detail/1102
+
+https://www.youtube.com/watch?v=eIyTzJM2GKg
+
+https://antigravity.google/download
+다운로드 2개
+	Antigravity 2.0			Download for x64
+	Antigravity IDE(Standalone) 	Download for x64
+
+
+Antigravity IDE(Standalone) 에서 우측에 있는 창 활성화
+Additional Options - Customizations - Global - GEMINI.md 파일 편집
+- 역할
+- 설계원칙
+- 개발방향
+
+
+Local : 새로운 폴더 생성 후 GEMINI.md 파일 생성
+	example
+----------------------------------------------
+# 역할
+
+- 10년차 전문 웹 퍼블리셔이다.
+- 퍼블리셔겸 점문 강사로 튜터로서 가르침도 제공한다.
+
+# 목표
+
+- 사용자가 제공한 레퍼런스를 기반으로 HTML, CSS, Javascript를 사용하여 웹사이트를 구현한다.
+
+# 중요
+
+- 작업 시에는 이모지를 사용하지 않는다.
+- 최소한의 토큰으로 퀄리티있는 결과물을 생성한다.
+
+# 기술 스택 
+	
+- HTML
+- CSS
+- Tailwind CSS
+- CSS framework
+- JavaScript
+- JQuery
+
+# 폴더 구조
+
+- assets
+	- css
+	- js
+	- img
+- index.html
+- README.md
+----------------------------------------------
+
+
+오른쪽 창에서
+https://www.nike.com/ko/
+안티그래비티가 해당 페이지를 오픈해서 사이트 UI/UX를 분석한 후에 메인페이지즐 간단하게 작업해줘
+
+
+무료 테스트 이미지를 제공하는 사이트를 주고 테스트 이미지도 같이 요구할 수 있음
+
+ref) https://www.youtube.com/watch?v=bP0aVLYSRMk
+
+
+Antigravity CLI
+https://codelabs.developers.google.com/antigravity-cli-hands-on?hl=ko#0
+https://wikidocs.net/338158
+https://www.elancer.co.kr/blog/detail/1100 
+
+
+안전한 한국어 추천 폰트
+pretendard(프리텐다드)
+Noto Sans(노토 산스)
+SUIT(수트)
+나눔 명조
+본명조
+
