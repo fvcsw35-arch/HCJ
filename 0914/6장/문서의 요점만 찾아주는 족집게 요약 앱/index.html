@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TextRank 핵심 요약기 (Summary Engine)</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;700;900&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="app-shell">
+        <!-- 상단 헤더 -->
+        <header class="header">
+            <div class="logo">
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                <span>TextRank Summary</span>
+            </div>
+            <p class="header-desc">문서를 업로드하고 슬라이드바로 요약 분량을 결정하세요.</p>
+        </header>
+
+        <!-- 메인 워크스페이스 -->
+        <main class="workspace">
+            <!-- 좌측: 입력 및 제어 패널 -->
+            <section class="panel control-panel">
+                <div class="section-title">
+                    <i class="fa-solid fa-file-arrow-up"></i> 1. 원본 문서 입력
+                </div>
+
+                <!-- 파일 업로드 박스 -->
+                <div class="drop-zone" id="drop-zone">
+                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                    <p>텍스트 파일을 드래그하거나 <strong>클릭하여 업로드</strong></p>
+                    <span class="file-hint">지원 형식: .txt (브라우저 환경 지원)</span>
+                    <input type="file" id="file-input" accept=".txt" hidden>
+                </div>
+
+                <!-- 텍스트 직접 입력 뷰어 -->
+                <div class="input-group">
+                    <label for="source-text">또는 텍스트 직접 붙여넣기</label>
+                    <textarea id="source-text" placeholder="요약할 내용을 이곳에 입력하거나 붙여넣으세요..."></textarea>
+                </div>
+
+                <!-- 슬라이드바 분량 조절 -->
+                <div class="slider-group">
+                    <div class="slider-label-wrap">
+                        <label for="sentence-slider">요약 문장 수</label>
+                        <span id="slider-val">3문장</span>
+                    </div>
+                    <input type="range" id="sentence-slider" min="1" max="5" value="3" step="1">
+                </div>
+
+                <button type="button" id="btn-summarize" class="btn-primary">
+                    <i class="fa-solid fa-bolt"></i> 핵심 요약 생성하기
+                </button>
+            </section>
+
+            <!-- 우측: 요약 결과 패널 -->
+            <section class="panel result-panel">
+                <div class="result-header">
+                    <div class="section-title">
+                        <i class="fa-solid fa-square-poll-vertical"></i> 2. TextRank 핵심 요약 결과
+                    </div>
+                    <button type="button" id="btn-copy" class="btn-icon" title="복사하기">
+                        <i class="fa-regular fa-copy"></i>
+                    </button>
+                </div>
+
+                <div class="result-box" id="result-box">
+                    <div class="placeholder-msg">
+                        <i class="fa-solid fa-info-circle"></i>
+                        <p>문서를 입력하고 요약 버튼을 누르면 TextRank 알고리즘이 추출한 핵심 문장이 여기에 표시됩니다.</p>
+                    </div>
+                </div>
+
+                <div class="stats-footer" id="stats-footer">
+                    <span>단어 수: <b id="stat-words">0</b></span>
+                    <span>추출된 중요도 점수 기반 순위 반영</span>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

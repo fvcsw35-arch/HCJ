@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Doc Compressor</title>
+  <link rel="stylesheet" href="style.css">
+
+  <!-- 라이브러리 추가 -->
+  <!-- 1. JSZip: 오피스 파일 처리 -->
+  <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+  <!-- 2. PDF.js: PDF 각 페이지를 캔버스(이미지)로 캡처 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.14.305/pdf.min.js"></script>
+  <!-- 3. jsPDF: 캡처된 저화질 이미지를 새로운 PDF로 다시 묶음 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+
+<body>
+
+  <!-- 헤더 영역 -->
+  <header class="site-header">
+    <div class="logo-area">
+      <a href="https://nanalab.kr" target="_blank" title="nanalab.kr로 이동">
+        <img src="logo.png" alt="Logo" class="logo-img"
+          onerror="this.src='https://via.placeholder.com/120x35/6366f1/ffffff?text=NanaLab'">
+      </a>
+    </div>
+    <div class="header-title">
+      <h1>Smart Doc Compressor</h1>
+    </div>
+  </header>
+
+  <!-- 메인 컨텐츠 영역 -->
+  <main class="main-container">
+    <div class="compressor-card">
+
+      <!-- 업로드 및 드래그 앤 드롭 영역 -->
+      <div class="drop-zone" id="dropZone">
+        <div class="drop-icon">📦</div>
+        <h2 class="drop-title">Upload or Drop your file!</h2>
+        <p class="drop-subtitle">Word, PPT, PDF 및 이미지 파일(JPG, PNG 등)을 여기에 끌어다 놓으세요</p>
+
+        <label for="fileInput" class="upload-btn">
+          <span>파일 선택하기</span>
+        </label>
+        <!-- HWP도 업로드 시도를 감지하기 위해 파일 선택창에는 포함함 -->
+        <input type="file" id="fileInput" multiple
+          accept=".doc, .docx, .ppt, .pptx, .pdf, .hwp, .jpg, .jpeg, .png, .webp">
+      </div>
+
+      <!-- 지원 파일 아이콘 안내 -->
+      <div class="supported-formats">
+        <span class="format-tag doc">WORD</span>
+        <span class="format-tag ppt">PPT</span>
+        <span class="format-tag pdf">PDF (스캔본 압축)</span>
+        <span class="format-tag img">IMAGE (JPG/PNG)</span>
+      </div>
+
+      <!-- 파일 목록 및 프로그레스바 영역 -->
+      <div class="file-list-container" id="fileListContainer">
+        <h3>처리 목록</h3>
+        <div class="file-list" id="fileList"></div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

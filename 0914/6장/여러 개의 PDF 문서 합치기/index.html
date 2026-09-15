@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Merger - 문서 병합기</title>
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Noto+Sans+KR:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- SortableJS (드래그 앤 드롭 순서 변경) & pdf-lib (PDF 병합) CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="app-container">
+        <!-- 배경 네온 하이라이트 -->
+        <div class="glow-effect"></div>
+
+        <!-- 헤더 -->
+        <header class="app-header">
+            <div class="brand-badge">
+                <i class="fa-solid fa-file-pdf"></i> PDF Tools
+            </div>
+            <h1 class="app-title">PDF 문서 병합기</h1>
+            <p class="app-subtitle">여러 PDF 파일을 올려 순서를 맞춘 후, 하나의 PDF 파일로 병합하세요.</p>
+        </header>
+
+        <!-- 파일 업로드 드롭존 -->
+        <section class="upload-card" id="drop-zone">
+            <div class="upload-icon-wrapper">
+                <i class="fa-solid fa-file-circle-plus upload-icon"></i>
+            </div>
+            <p class="upload-text">PDF 파일들을 이곳에 드롭하세요</p>
+            <p class="upload-subtext">또는 클릭하여 여러 파일 선택 (.pdf)</p>
+            <input type="file" id="file-input" accept=".pdf" multiple>
+        </section>
+
+        <!-- 파일 목록 및 순서 변경 카드 -->
+        <section class="file-list-card" id="file-list-card">
+            <div class="list-header">
+                <div class="list-title">
+                    <span>병합할 파일 목록</span>
+                    <span class="file-count-badge" id="file-count">0개</span>
+                </div>
+                <button type="button" class="btn-clear" id="btn-clear">전체 삭제</button>
+            </div>
+
+            <!-- 파일 드래그 리스트 -->
+            <ul class="file-list" id="file-list"></ul>
+
+            <!-- 하단 병합 실행 버튼 -->
+            <div class="action-wrapper">
+                <button type="button" class="btn-merge" id="btn-merge">
+                    <i class="fa-solid fa-object-group"></i> PDF 병합하기
+                </button>
+            </div>
+        </section>
+
+        <!-- 로딩 표시 -->
+        <div class="loading-box" id="loading-box">
+            <div class="loading-spinner"></div>
+            <p id="loading-text">PDF 파일을 병합하는 중입니다...</p>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

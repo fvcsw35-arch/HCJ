@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DocuStats - 문서 분석기</title>
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Noto+Sans+KR:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- 외부 파싱 라이브러리 CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="app-container">
+        <!-- 네온 하이라이트 효과 배경 바 -->
+        <div class="glow-effect"></div>
+
+        <!-- 헤더 -->
+        <header class="app-header">
+            <div class="brand-badge">
+                <i class="fa-solid fa-chart-pie"></i> DocuStats Engine
+            </div>
+            <h1 class="app-title">문서 통계 분석기</h1>
+            <p class="app-subtitle">PDF 및 DOCX 문서의 글자 수, 단어 수, 공백, 이미지 개수를 정밀하게 분석합니다.</p>
+        </header>
+
+        <!-- 파일 업로드 Drop Zone -->
+        <section class="upload-card" id="drop-zone">
+            <div class="upload-icon-wrapper">
+                <i class="fa-solid fa-cloud-arrow-up upload-icon"></i>
+            </div>
+            <p class="upload-text">문서 파일을 이곳에 드롭하세요</p>
+            <p class="upload-subtext">또는 클릭하여 파일 선택 (.pdf, .docx)</p>
+            <input type="file" id="file-input" accept=".pdf, .docx">
+        </section>
+
+        <!-- 파일 상세 정보 스트립 (초기 숨김) -->
+        <div class="file-info" id="file-info">
+            <div class="file-details">
+                <i class="fa-solid fa-file-contract" id="file-icon"></i>
+                <div>
+                    <span class="file-name" id="file-name">document.pdf</span>
+                    <span class="file-size" id="file-size">0 KB</span>
+                </div>
+            </div>
+            <button type="button" class="btn-reset" id="btn-reset" title="초기화">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <!-- 분석 진행 중 표시 -->
+        <div class="loading-box" id="loading-box">
+            <div class="loading-spinner"></div>
+            <p>문서 데이터를 파싱하는 중입니다...</p>
+        </div>
+
+        <!-- 분석 결과 그리드 -->
+        <section class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-header">
+                    <span class="stat-title">총 글자 수 (공백 포함)</span>
+                    <div class="stat-icon-badge color-pink">
+                        <i class="fa-solid fa-font"></i>
+                    </div>
+                </div>
+                <strong class="stat-value" id="char-with-space">0</strong>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-header">
+                    <span class="stat-title">총 글자 수 (공백 제외)</span>
+                    <div class="stat-icon-badge color-orange">
+                        <i class="fa-solid fa-i-cursor"></i>
+                    </div>
+                </div>
+                <strong class="stat-value" id="char-no-space">0</strong>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-header">
+                    <span class="stat-title">단어 수 (Word Count)</span>
+                    <div class="stat-icon-badge color-green">
+                        <i class="fa-solid fa-spell-check"></i>
+                    </div>
+                </div>
+                <strong class="stat-value" id="word-count">0</strong>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-header">
+                    <span class="stat-title">공백 개수 (Spaces)</span>
+                    <div class="stat-icon-badge color-blue">
+                        <i class="fa-solid fa-border-none"></i>
+                    </div>
+                </div>
+                <strong class="stat-value" id="space-count">0</strong>
+            </div>
+
+            <div class="stat-card full-width">
+                <div class="stat-header">
+                    <span class="stat-title">포함된 이미지 개수</span>
+                    <div class="stat-icon-badge color-purple">
+                        <i class="fa-solid fa-image"></i>
+                    </div>
+                </div>
+                <strong class="stat-value" id="image-count">0</strong>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

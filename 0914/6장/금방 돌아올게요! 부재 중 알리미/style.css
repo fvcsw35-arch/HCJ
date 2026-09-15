@@ -1,0 +1,406 @@
+:root {
+    --bg-main: #0b0f19;
+    --card-bg: rgba(22, 31, 49, 0.7);
+    --card-border: rgba(255, 255, 255, 0.08);
+
+    --text-primary: #f1f5f9;
+    --text-secondary: #94a3b8;
+
+    --accent-grad: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+    --accent-color: #818cf8;
+
+    --radius-xl: 28px;
+    --radius-m: 16px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Outfit', 'Noto Sans KR', sans-serif;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+}
+
+/* ===================================================
+   1. 설정 입력 화면 (Setup View)
+=================================================== */
+.glow-effect {
+    position: absolute;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 350px;
+    height: 350px;
+    background: var(--accent-grad);
+    filter: blur(140px);
+    opacity: 0.35;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.setup-container {
+    position: relative;
+    width: 100%;
+    max-width: 520px;
+    background: var(--card-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-xl);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    padding: 40px;
+    z-index: 1;
+    margin: 20px;
+}
+
+.app-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.brand-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(99, 102, 241, 0.15);
+    border: 1px solid rgba(99, 102, 241, 0.3);
+    color: var(--accent-color);
+    padding: 6px 14px;
+    border-radius: 30px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.app-title {
+    font-size: 2rem;
+    font-weight: 800;
+    background: var(--accent-grad);
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+}
+
+.app-subtitle {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.setup-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.input-group label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.input-group input {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-m);
+    padding: 14px 16px;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.input-group input:focus {
+    border-color: var(--accent-color);
+}
+
+/* Time input 커스텀 아이콘 하이라이트 */
+input[type="time"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    cursor: pointer;
+}
+
+.btn-start {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: var(--accent-grad);
+    border: none;
+    color: #fff;
+    padding: 16px;
+    border-radius: var(--radius-m);
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 10px 20px -5px rgba(99, 102, 241, 0.4);
+    transition: all 0.2s ease;
+    margin-top: 10px;
+}
+
+.btn-start:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 24px -5px rgba(99, 102, 241, 0.5);
+}
+
+
+/* ===================================================
+   2. 부재중 화면 & 오로라 그러데이션 애니메이션 (Display View)
+=================================================== */
+.away-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #030712;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    transition: opacity 0.4s ease;
+}
+
+.away-overlay.hidden {
+    display: none;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* 유기적으로 움직이는 오로라 버블 애니메이션 */
+.aurora-bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    filter: blur(90px);
+    opacity: 0.6;
+}
+
+.blob {
+    position: absolute;
+    border-radius: 50%;
+    animation: float 18s ease-in-out infinite alternate;
+}
+
+.blob-1 {
+    width: 600px;
+    height: 600px;
+    background: #6366f1;
+    top: -10%;
+    left: -10%;
+}
+
+.blob-2 {
+    width: 700px;
+    height: 700px;
+    background: #a855f7;
+    bottom: -20%;
+    right: -10%;
+    animation-delay: -6s;
+}
+
+.blob-3 {
+    width: 500px;
+    height: 500px;
+    background: #ec4899;
+    top: 30%;
+    left: 40%;
+    animation-delay: -12s;
+}
+
+@keyframes float {
+    0% {
+        transform: translate(0px, 0px) scale(1);
+    }
+
+    50% {
+        transform: translate(120px, 80px) scale(1.15);
+    }
+
+    100% {
+        transform: translate(-80px, -60px) scale(0.9);
+    }
+}
+
+/* 종료 버튼 */
+.btn-exit {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #fff;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    transition: all 0.2s ease;
+    z-index: 10;
+}
+
+.btn-exit:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: scale(1.1);
+}
+
+/* 디스플레이 메인 텍스트 영역 */
+.display-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 90%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 상태 뱃지 */
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 8px 18px;
+    border-radius: 30px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #e2e8f0;
+    margin-bottom: 30px;
+    backdrop-filter: blur(10px);
+}
+
+.pulse-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #34d399;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #34d399;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.7);
+    }
+
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 10px rgba(52, 211, 153, 0);
+    }
+
+    100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(52, 211, 153, 0);
+    }
+}
+
+/* 메인 일정 텍스트 (가장 큼) */
+.display-schedule {
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    font-weight: 900;
+    color: #ffffff;
+    line-height: 1.1;
+    margin-bottom: 40px;
+    text-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    letter-spacing: -1px;
+    word-break: keep-all;
+}
+
+/* 카운트다운 및 복귀 시간 카드 */
+.time-card {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.07);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: var(--radius-xl);
+    padding: 24px 40px;
+    margin-bottom: 35px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.return-time-box,
+.countdown-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.time-card .label {
+    font-size: 0.85rem;
+    color: #94a3b8;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+.time-card .time-value {
+    font-size: clamp(1.8rem, 4vw, 3.2rem);
+    font-weight: 800;
+    color: #f8fafc;
+    font-variant-numeric: tabular-nums;
+}
+
+.divider {
+    width: 1px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.15);
+    margin: 0 35px;
+}
+
+/* 기타 안내 문구 */
+.display-notice {
+    font-size: clamp(1.1rem, 2vw, 1.6rem);
+    color: #cbd5e1;
+    font-weight: 500;
+    max-width: 700px;
+    line-height: 1.5;
+    word-break: keep-all;
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 600px) {
+    .time-card {
+        flex-direction: column;
+        gap: 16px;
+        padding: 20px 30px;
+    }
+
+    .divider {
+        width: 80%;
+        height: 1px;
+        margin: 0;
+    }
+}

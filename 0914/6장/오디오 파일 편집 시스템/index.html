@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>웹 오디오 에디터 (Audio Studio)</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Noto+Sans+KR:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="app-container">
+        <!-- 헤더 영역 -->
+        <header class="header">
+            <div class="logo">
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                <span>Audio Studio</span>
+            </div>
+            <p class="subtitle">오디오 구간 자르기, 볼륨 조절, 포맷 변환을 한곳에서 처리하세요.</p>
+        </header>
+
+        <!-- 파일 업로드 카드 -->
+        <section class="upload-section">
+            <div class="drop-zone" id="drop-zone">
+                <i class="fa-solid fa-file-audio"></i>
+                <p>오디오 파일(MP3, WAV, OGG, AAC 등)을 드래그하거나 <strong>클릭하여 업로드</strong></p>
+                <input type="file" id="file-input" accept="audio/*" hidden>
+            </div>
+        </section>
+
+        <!-- 편집 워크스페이스 (파일 업로드 후 활성화) -->
+        <section class="workspace hidden" id="workspace">
+            <!-- 오디오 메타 정보 및 재생 제어 -->
+            <div class="audio-info-bar">
+                <div class="file-details">
+                    <i class="fa-solid fa-music"></i>
+                    <span id="file-name">filename.mp3</span>
+                </div>
+                <div class="playback-controls">
+                    <button type="button" id="btn-play" class="btn-control primary">
+                        <i class="fa-solid fa-play"></i> 재생
+                    </button>
+                    <span class="time-display" id="time-display">00:00 / 00:00</span>
+                </div>
+            </div>
+
+            <!-- 시각적 파형 & Trim 슬라이더 영역 -->
+            <div class="waveform-card">
+                <div class="waveform-header">
+                    <span><i class="fa-solid fa-scissors"></i> 구간 자르기 (Trim)</span>
+                    <span class="range-hint" id="trim-range-text">0.0초 ~ 0.0초</span>
+                </div>
+
+                <div class="canvas-wrapper">
+                    <canvas id="waveform-canvas" width="800" height="120"></canvas>
+                </div>
+
+                <!-- Trim 핸들 컨트롤러 -->
+                <div class="trim-inputs">
+                    <div class="time-input-group">
+                        <label>시작 지점 (초)</label>
+                        <input type="number" id="trim-start" min="0" step="0.1" value="0">
+                    </div>
+                    <div class="time-input-group">
+                        <label>종료 지점 (초)</label>
+                        <input type="number" id="trim-end" min="0" step="0.1" value="0">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 볼륨 및 포맷 컨트롤 패널 -->
+            <div class="controls-grid">
+                <!-- 볼륨 조절 -->
+                <div class="control-card">
+                    <div class="control-header">
+                        <i class="fa-solid fa-volume-high"></i>
+                        <label for="volume-range">볼륨 조절</label>
+                        <span id="volume-val" class="badge">100%</span>
+                    </div>
+                    <input type="range" id="volume-range" min="0" max="200" value="100" step="1">
+                </div>
+
+                <!-- 포맷 변환 -->
+                <div class="control-card">
+                    <div class="control-header">
+                        <i class="fa-solid fa-file-export"></i>
+                        <label for="format-select">출력 포맷 선택</label>
+                    </div>
+                    <select id="format-select" class="custom-select">
+                        <option value="wav">WAV (무손실 오디오)</option>
+                        <option value="mp3">MP3 (압축 오디오)</option>
+                        <option value="ogg">OGG (웹 최적화)</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- 다운로드 액션 버튼 -->
+            <button type="button" id="btn-export" class="btn-export">
+                <i class="fa-solid fa-download"></i> 편집된 오디오 내보내기 & 다운로드
+            </button>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>부재중 안내 모드 (Away Mode)</title>
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Noto+Sans+KR:wght@400;500;700;900&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- 1. 설정 입력 화면 (Setup View) -->
+    <main class="setup-container" id="setup-view">
+        <div class="glow-effect"></div>
+
+        <header class="app-header">
+            <div class="brand-badge">
+                <i class="fa-solid fa-moon"></i> Away Display
+            </div>
+            <h1 class="app-title">자리 비움 화면 설정</h1>
+            <p class="app-subtitle">자리를 비우는 동안 화면에 표시할 정보를 입력하세요.</p>
+        </header>
+
+        <form class="setup-form" id="away-form">
+            <!-- 일정 입력 (가장 크게 표시됨) -->
+            <div class="input-group">
+                <label for="schedule-input"><i class="fa-solid fa-calendar-check"></i> 주요 일정 / 사유</label>
+                <input type="text" id="schedule-input" placeholder="예: 외부 회의, 점심 식사, 휴게 중" required autocomplete="off">
+            </div>
+
+            <!-- 복귀 시간 선택 -->
+            <div class="input-group">
+                <label for="return-time-input"><i class="fa-regular fa-clock"></i> 복귀 예정 시간</label>
+                <input type="time" id="return-time-input" required>
+            </div>
+
+            <!-- 기타 안내 문구 -->
+            <div class="input-group">
+                <label for="notice-input"><i class="fa-solid fa-comment-dots"></i> 기타 안내 문구</label>
+                <input type="text" id="notice-input" placeholder="예: 급한 연락은 메신저나 전화 부탁드립니다." autocomplete="off">
+            </div>
+
+            <button type="submit" class="btn-start">
+                <i class="fa-solid fa-display"></i> 안내 화면 시작하기
+            </button>
+        </form>
+    </main>
+
+
+    <!-- 2. 부재중 모드 풀스크린 화면 (Display View) -->
+    <div class="away-overlay hidden" id="away-view">
+        <!-- 배경 다이내믹 오로라 그러데이션 -->
+        <div class="aurora-bg">
+            <div class="blob blob-1"></div>
+            <div class="blob blob-2"></div>
+            <div class="blob blob-3"></div>
+        </div>
+
+        <!-- 복귀/종료 버튼 -->
+        <button type="button" class="btn-exit" id="btn-exit" title="화면 종료 (Esc)">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <!-- 디스플레이 컨텐츠 -->
+        <div class="display-content">
+            <div class="status-badge">
+                <span class="pulse-dot"></span> CURRENTLY AWAY
+            </div>
+
+            <!-- 메인 일정 (가장 큰 글씨) -->
+            <h1 class="display-schedule" id="disp-schedule">점심 식사</h1>
+
+            <!-- 돌아오는 시간 & 카운트다운 카드 -->
+            <div class="time-card">
+                <div class="return-time-box">
+                    <span class="label">복귀 예정 시간</span>
+                    <span class="time-value" id="disp-return-time">13:30</span>
+                </div>
+                <div class="divider"></div>
+                <div class="countdown-box">
+                    <span class="label">남은 시간</span>
+                    <span class="time-value" id="disp-countdown">00:00:00</span>
+                </div>
+            </div>
+
+            <!-- 기타 안내 문구 -->
+            <p class="display-notice" id="disp-notice">급한 연락은 전화 부탁드립니다.</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

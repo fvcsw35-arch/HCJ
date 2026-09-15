@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart QR - Ultimate Studio</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- QR Code 생성 라이브러리 (jsDelivr CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+
+  <!-- 커스텀 커서 & 마우스 추적 네온 오라 -->
+  <div class="cursor-glow" id="cursorGlow"></div>
+
+  <!-- 배경 다이내믹 그래디언트 구체(Orbs) -->
+  <div class="gradient-bg">
+    <div class="orb orb-primary"></div>
+    <div class="orb orb-secondary"></div>
+    <div class="orb orb-accent"></div>
+  </div>
+
+  <!-- 상단 헤더 -->
+  <header class="site-header">
+    <div class="brand">
+      <div class="logo-box">
+        <img src="logo.png" alt="Smart QR Logo" class="logo-img">
+      </div>
+      <span class="site-title">Smart QR</span>
+    </div>
+  </header>
+
+  <!-- 메인 글래스 카드 -->
+  <main class="main-container">
+    <div class="glass-card" id="glassCard">
+      
+      <div class="card-header">
+        <div class="sparkle-badge">
+          <span class="dot"></span> INSTANT GENERATOR
+        </div>
+        <h2>Smart QR Code</h2>
+        <p class="subtitle">입력한 URL을 감성적이고 정교한 QR 코드로 변환해 드립니다.</p>
+      </div>
+
+      <form id="qrForm" class="qr-form" onsubmit="return false;">
+        <div class="input-wrapper">
+          <input 
+            type="text" 
+            id="urlInput" 
+            placeholder="URL을 입력하세요 (예: naver.com)" 
+            required 
+            autocomplete="off"
+          />
+          <button type="submit" id="generateBtn" class="glow-btn">
+            <span>생성하기</span>
+            <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </button>
+        </div>
+      </form>
+
+      <!-- QR 코드 생성 영역 -->
+      <div class="qr-section" id="qrSection">
+        <div class="qr-display-box">
+          <div id="qrcode" class="qrcode-wrapper" title="클릭하면 JPG로 저장됩니다"></div>
+        </div>
+        <p class="download-notice">
+          <span class="icon">✨</span> QR 코드를 클릭하면 <strong>JPG 이미지</strong>로 내려받을 수 있습니다.
+        </p>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

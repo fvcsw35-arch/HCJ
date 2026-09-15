@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video to GIF</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- 외부 라이브러리 로딩 지연을 방지하기 위해 defer 추가 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gif.js/0.2.0/gif.js" defer></script>
+</head>
+
+<body>
+
+  <header class="site-header">
+    <div class="logo-area">
+      <a href="https://nanalab.kr" target="_blank" rel="noopener noreferrer" title="nanalab.kr로 이동">
+        <!-- 절대 경로로 지정하여 로고 이미지 불러오기 -->
+        <img src="https://nanalab.kr/logo.png" alt="NanaLab Logo" class="logo-img"
+          onerror="this.onerror=null; this.src='https://via.placeholder.com/120x35/6366f1/ffffff?text=NanaLab';">
+      </a>
+    </div>
+    <div class="header-title">
+      <h1>Video to GIF</h1>
+    </div>
+  </header>
+
+  <main class="main-container">
+    <div class="app-card">
+
+      <div class="hero-section">
+        <h2 class="hero-title">Video ➔ GIF</h2>
+        <p class="hero-subtitle">Make your own GIF Animation!</p>
+      </div>
+
+      <div class="drop-zone" id="dropZone">
+        <div class="drop-icon">🎬</div>
+        <h3 class="drop-text">동영상 파일을 이곳에 드래그하거나 선택하세요</h3>
+        <p class="drop-hint">MP4, WebM, MOV 파일 지원 (최대 29 FPS 제한 적용)</p>
+
+        <label for="fileInput" class="upload-btn">
+          <span>비디오 선택하기</span>
+        </label>
+        <!-- multiple 선택 시 JS 처리 방식에 주의해야 합니다 -->
+        <input type="file" id="fileInput" multiple accept="video/*" style="display: none;">
+      </div>
+
+      <div class="process-container" id="processContainer">
+        <h3>변환 작업 목록</h3>
+        <div class="file-list" id="fileList"></div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- 메인 스크립트는 body 맨 아래에서 로드 -->
+  <script src="script.js" defer></script>
+</body>
+
+</html>

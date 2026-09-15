@@ -1,0 +1,328 @@
+:root {
+    /* 오로라 메인 컬러 팔레트 */
+    --bg-gradient: linear-gradient(-45deg, #ff9a9e, #fecfef, #a1c4fd, #c2e9fb, #e0c3fc);
+    --primary-grad: linear-gradient(135deg, #ff512f 0%, #dd2476 100%);
+    --secondary-grad: linear-gradient(135deg, #8a2387 0%, #e94057 50%, #f27121 100%);
+    --accent-purple: linear-gradient(135deg, #b224ef 0%, #7579ff 100%);
+
+    --card-bg: rgba(255, 255, 255, 0.85);
+    --card-bg-fallback: rgba(255, 255, 255, 0.95);
+    --card-border: rgba(255, 255, 255, 0.95);
+    --text-main: #1a202c;
+    --text-sub: #64748b;
+
+    --shadow-soft: 0 15px 35px rgba(100, 80, 160, 0.12);
+    --shadow-glow: 0 10px 25px rgba(221, 36, 118, 0.35);
+    --radius-xl: 28px;
+    --radius-m: 16px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', 'Noto Sans KR', sans-serif;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    background: var(--bg-gradient);
+    background-size: 400% 400%;
+    background-attachment: fixed;
+    animation: gradientBG 15s ease infinite;
+    color: var(--text-main);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* 메인 컨테이너 */
+.app-container {
+    width: 100%;
+    max-width: 600px;
+    background: var(--card-bg-fallback);
+    background: var(--card-bg);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 2px solid var(--card-border);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-soft);
+    padding: 40px;
+    transition: all 0.3s ease;
+}
+
+.app-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.app-title {
+    font-size: 2.3rem;
+    font-weight: 800;
+    background: var(--secondary-grad);
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+}
+
+.app-subtitle {
+    color: var(--text-sub);
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+/* 폼 디자인 */
+#fortune-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.control-group label {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--text-main);
+}
+
+input[type="text"],
+input[type="date"] {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    outline: none;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    background-color: #fff;
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus {
+    border-color: #dd2476;
+    box-shadow: 0 0 0 3px rgba(221, 36, 118, 0.15);
+}
+
+.radio-group {
+    display: flex;
+    gap: 20px;
+}
+
+.radio-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+/* 속성 버튼 그리드 */
+.element-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+}
+
+.btn-element {
+    background: #ffffff;
+    border: 2px solid #edf2f7;
+    padding: 15px 8px;
+    border-radius: var(--radius-m);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    font-weight: 700;
+    color: var(--text-sub);
+    transition: all 0.2s ease;
+}
+
+.btn-element i {
+    font-size: 1.5rem;
+}
+
+.btn-element:hover {
+    border-color: #7579ff;
+    transform: translateY(-2px);
+}
+
+.btn-element.active {
+    border-color: #dd2476;
+    background: rgba(221, 36, 118, 0.05);
+    color: #dd2476;
+    box-shadow: 0 4px 12px rgba(221, 36, 118, 0.2);
+}
+
+/* 버튼 스타일 */
+.btn-gradient {
+    display: inline-block;
+    background: var(--primary-grad);
+    color: #fff;
+    padding: 16px 32px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1.05rem;
+    border: none;
+    cursor: pointer;
+    box-shadow: var(--shadow-glow);
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.btn-gradient:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(221, 36, 118, 0.5);
+}
+
+.full-width {
+    width: 100%;
+}
+
+/* 결과 카드 디자인 (숨김 처리) */
+.result-card {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+}
+
+.badge {
+    background: #f0f3ff;
+    color: #5a67d8;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.result-title {
+    font-size: 1.6rem;
+    font-weight: 800;
+}
+
+.score-box {
+    background: #ffffff;
+    padding: 15px 30px;
+    border-radius: var(--radius-m);
+    box-shadow: var(--shadow-soft);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.score-box span {
+    font-size: 0.85rem;
+    color: var(--text-sub);
+}
+
+.score-box strong {
+    font-size: 2rem;
+    color: #dd2476;
+}
+
+.result-body {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: var(--radius-m);
+    box-shadow: var(--shadow-soft);
+}
+
+.highlight-text {
+    color: #dd2476;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.tool-desc {
+    color: var(--text-sub);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.luck-items {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+}
+
+.luck-item {
+    flex: 1;
+    background: #ffffff;
+    padding: 15px;
+    border-radius: var(--radius-m);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    box-shadow: var(--shadow-soft);
+}
+
+.luck-item i {
+    font-size: 1.5rem;
+    color: #7579ff;
+}
+
+.luck-item div {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.luck-item small {
+    font-size: 0.75rem;
+    color: var(--text-sub);
+}
+
+.btn-secondary {
+    background: #edf2f7;
+    color: var(--text-main);
+    padding: 14px 24px;
+    border-radius: 50px;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+    background: #e2e8f0;
+}
+
+/* 반응형 */
+@media (max-width: 600px) {
+    .app-container {
+        padding: 24px 18px;
+    }
+
+    .element-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}

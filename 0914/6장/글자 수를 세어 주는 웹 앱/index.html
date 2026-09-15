@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>글자 수 & 바이트 계산기</title>
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&family=Poppins:wght@400;600;800&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="app-container">
+        <!-- 헤더 -->
+        <header class="app-header">
+            <h1 class="app-title">📝 글자 수 & 바이트 계산기</h1>
+            <p class="app-subtitle">텍스트를 입력하거나 붙여넣으면 실시간으로 계산됩니다.</p>
+        </header>
+
+        <!-- 카운터 현황판 (스코어 박스) -->
+        <section class="stats-grid">
+            <div class="stat-box highlight">
+                <span>바이트 (한글 2Byte)</span>
+                <strong id="byte-count">0 <small>Bytes</small></strong>
+            </div>
+            <div class="stat-box">
+                <span>총 글자 수 (공백 포함)</span>
+                <strong id="char-with-space">0 <small>자</small></strong>
+            </div>
+            <div class="stat-box">
+                <span>총 글자 수 (공백 제외)</span>
+                <strong id="char-no-space">0 <small>자</small></strong>
+            </div>
+        </section>
+
+        <!-- 텍스트 입력 영역 -->
+        <section class="editor-section">
+            <textarea id="text-input" placeholder="여기에 텍스트를 입력하거나 붙여넣으세요..."></textarea>
+
+            <div class="action-bar">
+                <button type="button" class="btn-secondary" id="btn-clear">
+                    <i class="fa-solid fa-rotate-left"></i> 초기화
+                </button>
+                <button type="button" class="btn-gradient" id="btn-copy">
+                    <i class="fa-regular fa-copy"></i> 복사하기
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

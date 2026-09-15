@@ -1,0 +1,341 @@
+:root {
+    --bg-main: #0b0f19;
+    --card-bg: rgba(22, 31, 49, 0.7);
+    --card-border: rgba(255, 255, 255, 0.08);
+
+    --text-primary: #f1f5f9;
+    --text-secondary: #94a3b8;
+
+    --accent-grad: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+    --accent-color: #818cf8;
+    --red-grad: linear-gradient(135deg, #f43f5e, #e11d48);
+
+    --radius-xl: 24px;
+    --radius-m: 14px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Outfit', 'Noto Sans KR', sans-serif;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    overflow-x: hidden;
+}
+
+.glow-effect {
+    position: absolute;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 320px;
+    height: 320px;
+    background: var(--accent-grad);
+    filter: blur(130px);
+    opacity: 0.35;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.app-container {
+    position: relative;
+    width: 100%;
+    max-width: 720px;
+    background: var(--card-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-xl);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    padding: 40px;
+    z-index: 1;
+}
+
+.app-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.brand-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(244, 63, 94, 0.15);
+    border: 1px solid rgba(244, 63, 94, 0.3);
+    color: #fb7185;
+    padding: 6px 14px;
+    border-radius: 30px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.app-title {
+    font-size: 2.2rem;
+    font-weight: 800;
+    background: var(--accent-grad);
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+}
+
+.app-subtitle {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+/* 드롭존 */
+.upload-card {
+    border: 2px dashed rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: var(--radius-m);
+    padding: 36px 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 24px;
+}
+
+.upload-card:hover,
+.upload-card.drag-over {
+    border-color: var(--accent-color);
+    background: rgba(99, 102, 241, 0.05);
+    transform: translateY(-2px);
+}
+
+.upload-icon-wrapper {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.upload-icon {
+    font-size: 1.8rem;
+    color: var(--accent-color);
+}
+
+.upload-text {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.upload-subtext {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    margin-top: 4px;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+/* 파일 목록 영역 */
+.file-list-card {
+    display: none;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-m);
+    padding: 20px;
+}
+
+.list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--card-border);
+}
+
+.list-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 0.95rem;
+}
+
+.file-count-badge {
+    background: rgba(99, 102, 241, 0.2);
+    color: var(--accent-color);
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+}
+
+.btn-clear {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.btn-clear:hover {
+    color: #f43f5e;
+}
+
+/* 파일 리스트 및 드래그 앤 드롭 애니메이션 */
+.file-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 320px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+    padding-right: 4px;
+}
+
+.file-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    padding: 12px 16px;
+    cursor: grab;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.file-item:active {
+    cursor: grabbing;
+}
+
+.file-item.sortable-ghost {
+    opacity: 0.4;
+    background: rgba(99, 102, 241, 0.1);
+}
+
+.file-info-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    overflow: hidden;
+}
+
+.drag-handle {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.pdf-icon {
+    color: #f43f5e;
+    font-size: 1.3rem;
+}
+
+.file-name {
+    font-size: 0.9rem;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 320px;
+}
+
+.file-size {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    margin-left: 8px;
+}
+
+.btn-remove {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: color 0.2s;
+    padding: 4px;
+}
+
+.btn-remove:hover {
+    color: #f43f5e;
+}
+
+/* 병합 실행 버튼 */
+.action-wrapper {
+    text-align: center;
+}
+
+.btn-merge {
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: var(--accent-grad);
+    border: none;
+    color: #fff;
+    padding: 14px 24px;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 10px 20px -5px rgba(99, 102, 241, 0.4);
+    transition: all 0.2s ease;
+}
+
+.btn-merge:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 24px -5px rgba(99, 102, 241, 0.5);
+}
+
+/* 로딩 애니메이션 */
+.loading-box {
+    display: none;
+    text-align: center;
+    padding: 20px 0;
+    color: var(--accent-color);
+    font-weight: 600;
+}
+
+.loading-spinner {
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    border: 3px solid rgba(129, 140, 248, 0.2);
+    border-radius: 50%;
+    border-top-color: var(--accent-color);
+    animation: spin 0.8s linear infinite;
+    margin-bottom: 10px;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (max-width: 600px) {
+    .app-container {
+        padding: 24px 18px;
+    }
+
+    .file-name {
+        max-width: 160px;
+    }
+}

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI & 체중 목표 계산기</title>
+    <!-- Google Fonts & Font Awesome -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Noto+Sans+KR:wght@400;500;700;900&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="app-container">
+        <!-- 배경 글래스모피즘 효과 -->
+        <div class="glow-effect"></div>
+
+        <!-- 헤더 -->
+        <header class="app-header">
+            <div class="brand-badge">
+                <i class="fa-solid fa-heart-pulse"></i> Body Metric Engine
+            </div>
+            <h1 class="app-title">BMI & 체중 분석기</h1>
+            <p class="app-subtitle">신체 정보를 입력하여 현재 BMI와 목표 BMI별 가감 체중을 확인하세요.</p>
+        </header>
+
+        <!-- 입력 폼 -->
+        <form class="input-card" id="bmi-form">
+            <!-- 성별 선택 -->
+            <div class="input-group">
+                <label><i class="fa-solid fa-venus-mars"></i> 성별</label>
+                <div class="gender-selector">
+                    <label class="gender-btn">
+                        <input type="radio" name="gender" value="male" checked>
+                        <span><i class="fa-solid fa-mars"></i> 남성</span>
+                    </label>
+                    <label class="gender-btn">
+                        <input type="radio" name="gender" value="female">
+                        <span><i class="fa-solid fa-venus"></i> 여성</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- 키 & 몸무게 입력 -->
+            <div class="input-row">
+                <div class="input-group">
+                    <label for="height-input"><i class="fa-solid fa-ruler-vertical"></i> 키 (cm)</label>
+                    <input type="number" id="height-input" placeholder="예: 175" min="50" max="250" step="0.1" required>
+                </div>
+                <div class="input-group">
+                    <label for="weight-input"><i class="fa-solid fa-weight-scale"></i> 몸무게 (kg)</label>
+                    <input type="number" id="weight-input" placeholder="예: 70" min="10" max="400" step="0.1" required>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-calc">
+                <i class="fa-solid fa-calculator"></i> BMI 및 목표 체중 계산하기
+            </button>
+        </form>
+
+        <!-- 결과 출력 영역 (초기 숨김) -->
+        <section class="result-section hidden" id="result-section">
+            <!-- 현재 BMI 결과 카드 -->
+            <div class="current-bmi-card">
+                <span class="card-label">현재 BMI 지수</span>
+                <strong class="bmi-value" id="bmi-value">0.0</strong>
+                <span class="bmi-badge" id="bmi-status">정상</span>
+            </div>
+
+            <!-- 목표 BMI별 체중 조절 가이드 -->
+            <div class="target-grid">
+                <h3 class="target-title"><i class="fa-solid fa-bullseye"></i> 목표 BMI별 달성 체중 조건</h3>
+
+                <!-- BMI 90 카드 -->
+                <div class="target-card">
+                    <div class="target-header">
+                        <span class="target-bmi-tag">BMI 90</span>
+                        <span class="target-weight" id="target-weight-90">0 kg</span>
+                    </div>
+                    <div class="diff-box" id="diff-box-90">
+                        <span class="diff-text" id="diff-text-90">- kg</span>
+                    </div>
+                </div>
+
+                <!-- BMI 100 카드 -->
+                <div class="target-card">
+                    <div class="target-header">
+                        <span class="target-bmi-tag">BMI 100</span>
+                        <span class="target-weight" id="target-weight-100">0 kg</span>
+                    </div>
+                    <div class="diff-box" id="diff-box-100">
+                        <span class="diff-text" id="diff-text-100">- kg</span>
+                    </div>
+                </div>
+
+                <!-- BMI 110 카드 -->
+                <div class="target-card">
+                    <div class="target-header">
+                        <span class="target-bmi-tag">BMI 110</span>
+                        <span class="target-weight" id="target-weight-110">0 kg</span>
+                    </div>
+                    <div class="diff-box" id="diff-box-110">
+                        <span class="diff-text" id="diff-text-110">- kg</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

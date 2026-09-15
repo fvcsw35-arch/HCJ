@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>속성 오라클 - 오늘의 운세</title>
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&family=Poppins:wght@400;600;800&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="app-container">
+        <!-- 헤더 -->
+        <header class="app-header">
+            <h1 class="app-title">🔮 속성 오라클</h1>
+            <p class="app-subtitle">당신의 속성과 기운이 정해주는 오늘의 운세를 확인하세요.</p>
+        </header>
+
+        <!-- 입력 폼 카드 -->
+        <section class="upload-card" id="form-card">
+            <form id="fortune-form">
+                <div class="control-group">
+                    <label for="user-name">이름</label>
+                    <input type="text" id="user-name" placeholder="이름을 입력하세요" required>
+                </div>
+
+                <div class="control-group">
+                    <label for="user-birth">생년월일</label>
+                    <input type="date" id="user-birth" required>
+                </div>
+
+                <div class="control-group">
+                    <label>성별</label>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="gender" value="남성" checked> 남성
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="gender" value="여성"> 여성
+                        </label>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label>오늘의 속성 선택</label>
+                    <div class="element-grid">
+                        <button type="button" class="btn-element" data-element="fire">
+                            <i class="fa-solid fa-fire"></i>
+                            <span>불</span>
+                        </button>
+                        <button type="button" class="btn-element" data-element="water">
+                            <i class="fa-solid fa-droplet"></i>
+                            <span>물</span>
+                        </button>
+                        <button type="button" class="btn-element" data-element="wood">
+                            <i class="fa-solid fa-tree"></i>
+                            <span>나무</span>
+                        </button>
+                        <button type="button" class="btn-element" data-element="earth">
+                            <i class="fa-solid fa-mountain"></i>
+                            <span>땅</span>
+                        </button>
+                        <button type="button" class="btn-element" data-element="wind">
+                            <i class="fa-solid fa-wind"></i>
+                            <span>바람</span>
+                        </button>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-gradient full-width">운세 확인하기 ✨</button>
+            </form>
+        </section>
+
+        <!-- 결과 출력 카드 (초기 숨김) -->
+        <section class="result-card" id="result-card">
+            <div class="badge" id="res-badge">🔥 불의 기운</div>
+            <h2 class="result-title" id="res-name">홍길동님의 오늘 운세</h2>
+            <div class="score-box">
+                <span>오늘의 운세 지수</span>
+                <strong id="res-score">95점</strong>
+            </div>
+
+            <div class="result-body">
+                <p class="highlight-text" id="res-summary">"막혔던 흐름이 시원하게 뚫리는 열정적인 하루입니다!"</p>
+                <p class="tool-desc" id="res-detail">
+                    선택하신 불의 기운이 마음속 추진력을 극대화해 줍니다. 평소 미뤄두었던 일이나 어려웠던 도전을 오늘 시작해보세요.
+                </p>
+            </div>
+
+            <div class="luck-items">
+                <div class="luck-item">
+                    <i class="fa-solid fa-palette"></i>
+                    <div>
+                        <small>행운의 색</small>
+                        <strong id="res-color">크림 옐로우</strong>
+                    </div>
+                </div>
+                <div class="luck-item">
+                    <i class="fa-solid fa-hashtag"></i>
+                    <div>
+                        <small>행운의 숫자</small>
+                        <strong id="res-number">7</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="action-bar">
+                <button type="button" class="btn-secondary full-width" id="btn-retry">다시 검사하기</button>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

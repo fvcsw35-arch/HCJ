@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Image Resizer</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- JSZip 라이브러리 (일괄 다운로드용) -->
+    <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+</head>
+
+<body>
+
+    <!-- 1, 2. 상단 헤더 -->
+    <header class="site-header">
+        <div class="logo-area">
+            <!-- 로고 클릭 시 이동 (입력해주신 URL 반영) -->
+            <a href="https://nanalab.k" target="_blank" title="nanalab.k로 이동">
+                <img src="logo.png" alt="Logo" class="logo-img"
+                    onerror="this.src='https://via.placeholder.com/120x35/6366f1/ffffff?text=NanaLab'">
+            </a>
+        </div>
+        <div class="header-title">
+            <h1>Smart Image Resizer</h1>
+        </div>
+    </header>
+
+    <main class="main-container">
+        <div class="resizer-card">
+
+            <!-- 3. 이미지 업로드 드롭존 -->
+            <div class="drop-zone" id="dropZone">
+                <div class="drop-icon">🖼️</div>
+                <h2 class="drop-title">Upload or Drop your images!</h2>
+                <p class="drop-subtitle">편집할 이미지 파일(JPG, PNG, WEBP 등)을 드래그하거나 버튼을 누르세요</p>
+                <label for="fileInput" class="upload-btn">
+                    <span>이미지 선택하기</span>
+                </label>
+                <input type="file" id="fileInput" multiple accept="image/*">
+            </div>
+
+            <!-- 4, 5, 6, 7. 편집 옵션 설정 영역 -->
+            <div class="options-container">
+
+                <!-- 비율 선택 -->
+                <div class="option-group">
+                    <label class="option-label">캔버스 비율 선택</label>
+                    <div class="ratio-buttons">
+                        <button class="ratio-btn active" data-ratio="1:1">1:1</button>
+                        <button class="ratio-btn" data-ratio="3:4">3:4</button>
+                        <button class="ratio-btn" data-ratio="4:3">4:3</button>
+                        <button class="ratio-btn" data-ratio="9:16">9:16</button>
+                        <button class="ratio-btn" data-ratio="16:9">16:9</button>
+                        <button class="ratio-btn" data-ratio="custom">커스텀</button>
+                    </div>
+
+                    <!-- 커스텀 비율 입력창 -->
+                    <div class="custom-ratio-inputs" id="customRatioInputs">
+                        <input type="number" id="customWidth" placeholder="가로 비율" min="1" value="1">
+                        <span>:</span>
+                        <input type="number" id="customHeight" placeholder="세로 비율" min="1" value="1">
+                    </div>
+                </div>
+
+                <!-- 방식 및 여백 색상 선택 -->
+                <div class="option-group">
+                    <label class="option-label">리사이즈 방식</label>
+                    <div class="mode-buttons">
+                        <label class="mode-radio">
+                            <input type="radio" name="resizeMode" value="crop" checked>
+                            <span>Crop (자르기)</span>
+                        </label>
+                        <label class="mode-radio">
+                            <input type="radio" name="resizeMode" value="padding">
+                            <span>Padding (여백 추가)</span>
+                        </label>
+                    </div>
+
+                    <!-- Padding 여백 색상 지정 -->
+                    <div class="color-picker-group" id="colorPickerGroup">
+                        <label for="bgColor">여백 색상:</label>
+                        <input type="color" id="bgColor" value="#ffffff">
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- 8, 9, 10, 11. 이미지 목록, 프로그레스바, 다운로드 버튼 -->
+            <div class="process-container" id="processContainer">
+                <div class="process-header">
+                    <h3>작업 목록</h3>
+                    <button id="downloadAllBtn" class="download-all-btn" disabled>ZIP 일괄 다운로드</button>
+                </div>
+                <div class="file-list" id="fileList"></div>
+            </div>
+
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

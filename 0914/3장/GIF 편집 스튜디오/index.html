@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart GIF Studio</title>
+
+    <!-- FontAwesome 아이콘 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts (Poppins & Noto Sans KR) -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&family=Poppins:wght@400;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- 외부 스타일시트 연동 -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="app-container">
+        <!-- 메인 헤더 -->
+        <header class="app-header">
+            <h1 class="app-title"><i class="fa-solid fa-wand-magic-sparkles"></i> Smart GIF Studio</h1>
+            <p class="app-subtitle">GIF 편집, 리사이즈, 속도 조절을 한 곳에서 빠르고 화려하게!</p>
+        </header>
+
+        <!-- 1. 업로드 영역 -->
+        <div id="upload-container">
+            <div class="upload-card" id="drop-zone">
+                <i class="fa-solid fa-cloud-arrow-up upload-icon"></i>
+                <h2>GIF 파일을 드래그하여 올려놓으세요</h2>
+                <p class="upload-subtext">또는 컴퓨터에서 직접 선택할 수 있습니다</p>
+                <button class="btn-gradient" id="btn-choose">파일 선택하기</button>
+                <input type="file" id="file-input" accept="image/gif">
+            </div>
+        </div>
+
+        <!-- 2. 에디터 영역 -->
+        <div id="editor-container">
+            <div class="editor-workspace">
+                <!-- 왼쪽: GIF 프리뷰 -->
+                <div class="preview-box">
+                    <img id="gif-preview" src="" alt="GIF Preview">
+                    <div class="info-badges">
+                        <span class="badge" id="info-size">0 MB</span>
+                        <span class="badge" id="info-dimensions">0 × 0 px</span>
+                        <span class="badge" id="info-frames">30 Frames</span>
+                        <span class="badge" id="info-fps">15 FPS</span>
+                    </div>
+                </div>
+
+                <!-- 오른쪽: 도구 패널 -->
+                <div class="tools-panel">
+                    <!-- 메인 도구 메뉴 -->
+                    <div id="main-tools-view">
+                        <h3 class="panel-title">작업 선택</h3>
+                        <div class="tools-grid">
+                            <button class="btn-tool" data-tool="resize">
+                                <i class="fa-solid fa-expand"></i>
+                                <span>크기 조절</span>
+                            </button>
+                            <button class="btn-tool" data-tool="crop">
+                                <i class="fa-solid fa-crop-simple"></i>
+                                <span>자르기</span>
+                            </button>
+                            <button class="btn-tool" data-tool="speed">
+                                <i class="fa-solid fa-gauge-high"></i>
+                                <span>속도 조절</span>
+                            </button>
+                            <button class="btn-tool" data-tool="optimize">
+                                <i class="fa-solid fa-bolt"></i>
+                                <span>용량 최적화</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 서브 옵션 1: 리사이즈 -->
+                    <div id="resize-options-view" class="tool-options-container">
+                        <div class="panel-header">
+                            <button class="btn-back" title="뒤로가기"><i class="fa-solid fa-arrow-left"></i></button>
+                            <h3>GIF 크기 조절</h3>
+                        </div>
+                        <div class="control-group">
+                            <label>가로 / 세로 크기 (px)</label>
+                            <div class="input-row">
+                                <input type="number" id="resize-x-num" value="0" min="1">
+                                <button class="btn-lock locked" id="btn-aspect-lock" title="비율 고정">
+                                    <i class="fa-solid fa-lock" id="lock-icon"></i>
+                                </button>
+                                <input type="number" id="resize-y-num" value="0" min="1">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label>가로 크기 조절 슬라이더</label>
+                            <input type="range" id="resize-x-slider">
+                        </div>
+                        <div class="control-group">
+                            <label>세로 크기 조절 슬라이더</label>
+                            <input type="range" id="resize-y-slider">
+                        </div>
+                        <button class="btn-gradient btn-go full-width">크기 변경 적용</button>
+                    </div>
+
+                    <!-- 서브 옵션 2: 자르기 -->
+                    <div id="crop-options-view" class="tool-options-container">
+                        <div class="panel-header">
+                            <button class="btn-back" title="뒤로가기"><i class="fa-solid fa-arrow-left"></i></button>
+                            <h3>영역 자르기</h3>
+                        </div>
+                        <p class="tool-desc">자르고 싶은 비율이나 배경 채우기 옵션을 설정하세요.</p>
+                        <div class="control-group">
+                            <label>배경 스타일</label>
+                            <div class="radio-group">
+                                <label class="radio-label">
+                                    <input type="radio" name="crop-fill" value="transparent" checked> 투명
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="crop-fill" value="color"> 색상 채우기
+                                </label>
+                            </div>
+                        </div>
+                        <div class="control-group" id="crop-color-picker" style="display:none;">
+                            <label>배경 색상</label>
+                            <input type="color" value="#ffffff" class="color-input">
+                        </div>
+                        <button class="btn-gradient btn-go full-width">자르기 적용</button>
+                    </div>
+
+                    <!-- 서브 옵션 3: 속도 조절 -->
+                    <div id="speed-options-view" class="tool-options-container">
+                        <div class="panel-header">
+                            <button class="btn-back" title="뒤로가기"><i class="fa-solid fa-arrow-left"></i></button>
+                            <h3>재생 속도 조절</h3>
+                        </div>
+                        <div class="control-group">
+                            <label>속도 배율: <span id="speed-val-text" class="highlight-text">1.00x</span></label>
+                            <input type="range" id="speed-slider" min="0.25" max="3.0" step="0.25" value="1.0">
+                        </div>
+                        <button class="btn-gradient btn-go full-width">속도 변경 적용</button>
+                    </div>
+
+                    <!-- 서브 옵션 4: 최적화 -->
+                    <div id="optimize-options-view" class="tool-options-container">
+                        <div class="panel-header">
+                            <button class="btn-back" title="뒤로가기"><i class="fa-solid fa-arrow-left"></i></button>
+                            <h3>용량 최적화</h3>
+                        </div>
+                        <div class="control-group">
+                            <label>압축 수준</label>
+                            <select class="styled-select">
+                                <option value="low">기본 압축 (화질 우수)</option>
+                                <option value="medium" selected>권장 압축 (균형)</option>
+                                <option value="high">강한 압축 (최대 용량 확보)</option>
+                            </select>
+                        </div>
+                        <button class="btn-gradient btn-go full-width">최적화 시작</button>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- 하단 동작 바 -->
+            <div class="action-bar">
+                <button class="btn-secondary" id="btn-change-file">
+                    <i class="fa-solid fa-rotate-left"></i> 다른 파일 선택
+                </button>
+                <input type="file" id="change-file-input" accept="image/gif">
+                <a id="btn-download" class="btn-gradient" href="#" download>
+                    <i class="fa-solid fa-download"></i> 결과물 다운로드
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 외부 스크립트 연동 -->
+    <script src="script.js"></script>
+</body>
+
+</html>

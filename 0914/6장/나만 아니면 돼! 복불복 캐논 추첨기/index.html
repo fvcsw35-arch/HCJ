@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>구슬 장애물 추첨기 (Marble Lottery)</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="app-container">
+        <!-- 설정 및 명단 입력 패널 -->
+        <section class="control-panel">
+            <div class="brand">
+                <i class="fa-solid fa-circle-nodes"></i> Marble Drop
+            </div>
+            <h2>구슬 추첨기</h2>
+            <p class="subtitle">참가자 이름을 쉼표(,)나 줄바꿈으로 구분해 입력해 주세요.</p>
+
+            <div class="input-group">
+                <label for="name-input">참가자 명단</label>
+                <textarea id="name-input" placeholder="김철수, 이영희, 박민수, 최지혜&#10;홍길동&#10;정수진"></textarea>
+            </div>
+
+            <button type="button" id="btn-start" class="btn-start">
+                <i class="fa-solid fa-play"></i> 구슬 발사 및 추첨 시작
+            </button>
+        </section>
+
+        <!-- 핀볼 추첨 캔버스 영역 -->
+        <section class="canvas-container">
+            <canvas id="pinball-canvas" width="500" height="700"></canvas>
+
+            <!-- 당첨자 안내 오버레이 -->
+            <div class="winner-overlay hidden" id="winner-overlay">
+                <div class="winner-card">
+                    <i class="fa-solid fa-trophy trophy-icon"></i>
+                    <span class="winner-label">최후의 생존자 (당첨자)</span>
+                    <h1 class="winner-name" id="winner-name">홍길동</h1>
+                    <button type="button" id="btn-reset" class="btn-reset">다시 추첨하기</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
