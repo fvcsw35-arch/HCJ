@@ -1,22 +1,46 @@
+# 💍 American Mobile Wedding Invitation Project
+
+> **미국 스타일의 모바일 청첩장 웹 애플리케이션 문서입니다.**  
+> 신랑 **Liam Alexander Miller**와 신부 **Sophia Olivia Davis**의 미국 유명 웨딩홀 예식을 위한 모바일 청첩장 웹 코드 및 프로젝트 명세입니다.
+
+---
+
+## 📌 프로젝트 개요
+
+본 프로젝트는 한국식 모바일 청첩장 구조를 바탕으로 **미국식 문화 및 영문 웨딩 스타일(RSVP, Registry, Wedding Party 등)**에 맞추어 재설계한 HTML/CSS/JS 기반 반응형 웹 애플리케이션입니다.
+
+- **신랑**: Liam Alexander Miller (Son of Robert & Jennifer Miller)
+- **신부**: Sophia Olivia Davis (Daughter of William & Elizabeth Davis)
+- **일시**: 2026년 10월 17일 토요일 오후 4시 (Saturday, October 17, 2026 at 4:00 PM)
+- **장소**: 미국 뉴욕 소재의 역사적인 명소 **The Plaza Hotel, New York (The Grand Ballroom)**
+- **특징**: 카운트다운 타이머, 갤러리 모달, 구글 맵 연동, 축의금 계좌 대신 미국 문화인 **선물 등록(Registry)** 링크 구성
+
+---
+
+## 💻 수정 및 개선된 HTML 소스 코드 (`index.html`)
+
+```html
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>김민준 ♥ 이서연 결혼합니다</title>
+    <title>Liam & Sophia's Wedding Invitation</title>
 
-    <meta property="og:title" content="김민준 ♥ 이서연 결혼합니다">
-    <meta property="og:description" content="2026년 11월 14일 토요일 오후 1시 · 그랜드팰리스 웨딩홀">
+    <!-- Open Graph for Social Sharing -->
+    <meta property="og:title" content="Liam ♥ Sophia - We Are Getting Married!">
+    <meta property="og:description" content="Saturday, October 17, 2026 · The Plaza Hotel, New York">
     <meta property="og:image" content="3.png">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="[https://fonts.googleapis.com](https://fonts.googleapis.com)">
+    <link rel="preconnect" href="[https://fonts.gstatic.com](https://fonts.gstatic.com)" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap"
+        href="[https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap](https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap)"
         rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="[https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css](https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css)">
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -26,49 +50,47 @@
         <!-- 1. COVER -->
         <header class="cover">
             <div class="cover-img-wrap">
-                <img src="3.png" alt="메인 커버 사진"
-                    onerror="this.src='https://via.placeholder.com/600x800/f3f3f3/999999?text=3.png'">
+                <img src="3.png" alt="Liam & Sophia Main Cover"
+                    onerror="this.src='[https://via.placeholder.com/600x800/f8f5f0/666666?text=Liam+%26+Sophia](https://via.placeholder.com/600x800/f8f5f0/666666?text=Liam+%26+Sophia)'">
             </div>
             <div class="cover-content">
-                <p class="eng-sub">WEDDING INVITATION</p>
-                <h1 class="names">김민준 <span>&</span> 이서연</h1>
-                <p class="date">2026. 11. 14. SAT PM 1:00</p>
-                <p class="place">그랜드팰리스 웨딩홀 3층 그레이스홀</p>
+                <p class="eng-sub">TOGETHER WITH THEIR FAMILIES</p>
+                <h1 class="names">Liam <span>&</span> Sophia</h1>
+                <p class="date">SATURDAY, OCTOBER 17, 2026 · 4:00 PM</p>
+                <p class="place">The Plaza Hotel, New York<br><small>The Grand Ballroom</small></p>
             </div>
         </header>
 
         <!-- 2. INVITATION -->
         <section class="invite">
-            <p class="sec-label">INVITATION</p>
-            <h2 class="sec-title">소중한 분들을 초대합니다</h2>
+            <p class="sec-label">WE'RE GETTING MARRIED</p>
+            <h2 class="sec-title">Join Us in Celebration</h2>
             <div class="divider"></div>
 
             <p class="invite-text">
-                초록빛 정원에 햇살이 내리던 날,<br>
-                서로의 가장 환한 웃음이 되어준 두 사람이<br>
-                이제 같은 길을 함께 걷고자 합니다.<br><br>
-                맞잡은 두 손, 마주 본 미소 그대로<br>
-                평생을 약속하는 자리에<br>
-                귀한 걸음 하시어 축복해 주시면<br>
-                더없는 기쁨으로 간직하겠습니다.
+                With joyful hearts and cherished memories,<br>
+                we invite you to celebrate our wedding day.<br><br>
+                As we begin this new chapter of love and commitment,<br>
+                your presence and blessings would mean<br>
+                the world to us.
             </p>
 
             <div class="parents">
                 <div class="p-row">
-                    <span><b>김영호 · 박정숙</b> 의 장남</span>
-                    <span class="name">민준</span>
+                    <span>Groom · <b>Liam Alexander Miller</b></span>
+                    <span class="family">Son of Robert & Jennifer Miller</span>
                 </div>
                 <div class="p-row">
-                    <span><b>이상철 · 최미경</b> 의 장녀</span>
-                    <span class="name">서연</span>
+                    <span>Bride · <b>Sophia Olivia Davis</b></span>
+                    <span class="family">Daughter of William & Elizabeth Davis</span>
                 </div>
             </div>
         </section>
 
         <!-- 3. COUNTDOWN -->
         <section class="countdown-section">
-            <p class="sec-label">D-DAY</p>
-            <h2 class="sec-title">결혼식까지 남은 시간</h2>
+            <p class="sec-label">COUNTDOWN</p>
+            <h2 class="sec-title">Counting Down to the Big Day</h2>
 
             <div class="timer">
                 <div class="t-box">
@@ -91,82 +113,79 @@
                     <span class="label">SECS</span>
                 </div>
             </div>
-            <p class="cd-message">민준 ♥ 서연의 예식이 <span id="days-text">0</span>일 남았습니다.</p>
+            <p class="cd-message">Only <span id="days-text">0</span> days until Liam & Sophia say "I Do"!</p>
         </section>
 
         <!-- 4. GALLERY -->
         <section class="gallery">
             <p class="sec-label">GALLERY</p>
-            <h2 class="sec-title">우리의 순간들</h2>
+            <h2 class="sec-title">Our Favorite Moments</h2>
             <div class="gallery-grid">
-                <div class="g-item"><img src="2.png" alt="신부 단독" onclick="openModal(this.src)"
-                        onerror="this.src='https://via.placeholder.com/400x500/f3f3f3/999999?text=2.png'"></div>
-                <div class="g-item"><img src="1.png" alt="신랑 단독" onclick="openModal(this.src)"
-                        onerror="this.src='https://via.placeholder.com/400x500/f3f3f3/999999?text=1.png'"></div>
-                <div class="g-item"><img src="5.png" alt="유럽 광장 데이트" onclick="openModal(this.src)"
-                        onerror="this.src='https://via.placeholder.com/400x500/f3f3f3/999999?text=5.png'"></div>
-                <div class="g-item"><img src="4.png" alt="해변 노을 산책" onclick="openModal(this.src)"
-                        onerror="this.src='https://via.placeholder.com/400x500/f3f3f3/999999?text=4.png'"></div>
-                <div class="g-item wide"><img src="3.png" alt="가든 커플 컷" onclick="openModal(this.src)"
-                        onerror="this.src='https://via.placeholder.com/800x500/f3f3f3/999999?text=3.png'"></div>
+                <div class="g-item"><img src="2.png" alt="Bride Portrait" onclick="openModal(this.src)"
+                        onerror="this.src='[https://via.placeholder.com/400x500/f8f5f0/666666?text=Bride](https://via.placeholder.com/400x500/f8f5f0/666666?text=Bride)'"></div>
+                <div class="g-item"><img src="1.png" alt="Groom Portrait" onclick="openModal(this.src)"
+                        onerror="this.src='[https://via.placeholder.com/400x500/f8f5f0/666666?text=Groom](https://via.placeholder.com/400x500/f8f5f0/666666?text=Groom)'"></div>
+                <div class="g-item"><img src="5.png" alt="European Trip Memory" onclick="openModal(this.src)"
+                        onerror="this.src='[https://via.placeholder.com/400x500/f8f5f0/666666?text=Memory](https://via.placeholder.com/400x500/f8f5f0/666666?text=Memory)'"></div>
+                <div class="g-item"><img src="4.png" alt="Sunset Beach Walk" onclick="openModal(this.src)"
+                        onerror="this.src='[https://via.placeholder.com/400x500/f8f5f0/666666?text=Beach](https://via.placeholder.com/400x500/f8f5f0/666666?text=Beach)'"></div>
+                <div class="g-item wide"><img src="3.png" alt="Garden Couple Shot" onclick="openModal(this.src)"
+                        onerror="this.src='[https://via.placeholder.com/800x500/f8f5f0/666666?text=Couple](https://via.placeholder.com/800x500/f8f5f0/666666?text=Couple)'"></div>
             </div>
         </section>
 
-        <!-- Modal -->
+        <!-- Modal for Image Lightbox -->
         <div id="modal" class="modal" onclick="closeModal()">
-            <img id="modal-img" src="" alt="확대 이미지">
+            <img id="modal-img" src="" alt="Enlarged Photo">
         </div>
 
         <!-- 5. LOCATION -->
         <section class="location">
-            <p class="sec-label">LOCATION</p>
-            <h2 class="sec-title">오시는 길</h2>
+            <p class="sec-label">VENUE & LOCATION</p>
+            <h2 class="sec-title">Where & When</h2>
             <div class="venue-info">
-                <h3>그랜드팰리스 웨딩홀 3층 그레이스홀</h3>
-                <p>서울특별시 강남구 테헤란로 123 (TEL. 02-1234-5678)</p>
+                <h3>The Plaza Hotel New York</h3>
+                <p class="hall-detail">The Grand Ballroom (3rd Floor)</p>
+                <p>768 5th Ave, New York, NY 10019, USA</p>
+                <p class="tel">TEL. +1 212-759-3000</p>
             </div>
 
             <div class="map-links">
-                <a href="https://map.kakao.com/link/search/그랜드팰리스웨딩홀" target="_blank" class="map-btn kakao">카카오맵</a>
-                <a href="https://map.naver.com/v5/search/그랜드팰리스웨딩홀" target="_blank" class="map-btn naver">네이버지도</a>
+                <a href="[https://maps.google.com/?q=The+Plaza+Hotel+New+York](https://maps.google.com/?q=The+Plaza+Hotel+New+York)" target="_blank" class="map-btn google">
+                    <i class="fa-solid fa-location-dot"></i> Google Maps
+                </a>
+                <a href="[https://apple.co/maps](https://apple.co/maps)" target="_blank" class="map-btn apple">
+                    <i class="fa-solid fa-map-pin"></i> Apple Maps
+                </a>
             </div>
         </section>
 
-        <!-- 6. CONTACT & ACCOUNTS -->
+        <!-- 6. GIFT REGISTRY (US Culture Adaptation) -->
         <section class="contact">
-            <p class="sec-label">ACCOUNT</p>
-            <h2 class="sec-title">마음 전하실 곳</h2>
+            <p class="sec-label">REGISTRY</p>
+            <h2 class="sec-title">Honeymoon & Gift Registry</h2>
+            <p class="registry-desc">
+                Your presence at our wedding is the greatest gift of all.<br>
+                However, if you wish to honor us with a gift, we have registered at the following stores:
+            </p>
 
             <div class="acc-group">
-                <button class="acc-toggle" onclick="toggleAcc('groom-acc')">신랑측 계좌번호 보기</button>
-                <div id="groom-acc" class="acc-panel">
-                    <div class="acc-row">
-                        <span>신랑 김민준<br><b>국민 123456-01-234567</b></span>
-                        <button onclick="copyText('국민 123456-01-234567')">복사</button>
-                    </div>
-                    <div class="acc-row">
-                        <span>부 김영호<br><b>신한 110-123-456789</b></span>
-                        <button onclick="copyText('신한 110-123-456789')">복사</button>
-                    </div>
-                </div>
-
-                <button class="acc-toggle" onclick="toggleAcc('bride-acc')">신부측 계좌번호 보기</button>
-                <div id="bride-acc" class="acc-panel">
-                    <div class="acc-row">
-                        <span>신부 이서연<br><b>우리 1002-345-678901</b></span>
-                        <button onclick="copyText('우리 1002-345-678901')">복사</button>
-                    </div>
-                    <div class="acc-row">
-                        <span>모 최미경<br><b>하나 123-456789-01234</b></span>
-                        <button onclick="copyText('하나 123-456789-01234')">복사</button>
-                    </div>
-                </div>
+                <a href="[https://www.zola.com](https://www.zola.com)" target="_blank" class="registry-btn">
+                    <i class="fa-solid fa-gift"></i> Zola Wedding Registry
+                </a>
+                <a href="[https://www.crateandbarrel.com](https://www.crateandbarrel.com)" target="_blank" class="registry-btn">
+                    <i class="fa-solid fa-house-chimney"></i> Crate & Barrel
+                </a>
+                <a href="[https://www.target.com](https://www.target.com)" target="_blank" class="registry-btn">
+                    <i class="fa-solid fa-store"></i> Target Registry
+                </a>
             </div>
         </section>
 
         <!-- 7. FOOTER -->
         <footer>
-            <p>저희 두 사람의 새로운 시작을<br>함께해 주셔서 감사합니다.</p>
+            <p>Thank you for being a part of our lives<br>and sharing in our happiness.</p>
+            <p class="copyright">© 2026 Liam & Sophia</p>
         </footer>
 
     </div>
