@@ -1,40 +1,54 @@
-## About this project
+# 🌊 釜山 案内 (BUSAN GUIDE)
 
-BUSAN GUIDE is a non-commercial, educational portfolio project (student/team assignment) and is not affiliated with Busan Transportation Corporation or any official tourism body.
+> **일본인 관광객 및 일본어 사용자를 위한 부산 여행·관광 웹 가이드 서비스입니다.**  
+> React와 TypeScript를 기반으로 구축되었으며, 세련된 웹 폰트 스타일과 SPA(Single Page Application) 구조를 통해 쾌적한 부산 관광 정보를 제공합니다.
 
-- **Photos**: most photography on this site comes from [Unsplash](https://unsplash.com) under the [Unsplash License](https://unsplash.com/license), which permits commercial and non-commercial use without attribution. The one exception is the Oncheonjang station photo (`public/pages/oncheonjang.jpg`), which is [Hurshimchung 01.JPG](https://commons.wikimedia.org/wiki/File:Hurshimchung_01.JPG) by Abasaa via Wikimedia Commons, released into the public domain (PD-self) — resized for the web.
-- **Fonts**: Instrument Serif, Shippori Mincho, and M PLUS Rounded 1c, served via Google Fonts, all licensed under the [SIL Open Font License](https://scripts.sil.org/OFL).
-- **Code**: built with React, Vite, TypeScript, Tailwind CSS, motion/react, and GSAP.
+---
 
-# React + TypeScript + Vite
+## 📌 프로젝트 소개
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+본 프로젝트는 한국 부산의 다양한 매력과 관광지 정보를 일본어로 제공하는 글로벌 웹 가이드 서비스입니다.  
+React와 Vite 환경을 활용하여 빠른 로딩 속도를 구현하였으며, Google Fonts의 일본어 특화 폰트(Shippori Mincho, M PLUS Rounded 1c) 및 영문 세리프 폰트를 적용하여 시각적으로 완성도 높은 디자인을 제공합니다.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🛠️ 기술 스택 (Tech Stack)
 
-## React Compiler
+### Development & Framework
+- **Core:** React 18+[cite: 3]
+- **Language:** TypeScript (`/src/main.tsx`)[cite: 3]
+- **Build Tool:** Vite[cite: 3]
+- **Language/i18n Target:** 일본어 (Japanese, `ja`)[cite: 3]
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### UI & Styling
+- **HTML5 / CSS3**[cite: 3]
+- **Typography (Google Fonts):**
+  - `Shippori Mincho`: 전통적이고 명조 특유의 정갈한 느낌을 주는 일본어 폰트[cite: 3]
+  - `M PLUS Rounded 1c`: 가독성 높고 친근한 둥근 고딕 느낌의 일본어 폰트[cite: 3]
+  - `Instrument Serif`: 세련된 타이포그래피 표현을 위한 영문 세리프 폰트[cite: 3]
 
-## Expanding the Oxlint configuration
+---
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+## ✨ 주요 특징 및 요소
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
-```
+1. **일본어 맞춤형 Web UI/UX**
+   - HTML `lang="ja"` 속성을 지정하여 일본어 검색 엔진 최적화 및 브라우저 렌더링 최적화[cite: 3]
+   - 프리넥트(`preconnect`)를 적용한 Google Fonts 사전 로딩 기법으로 폰트 플리커링 현상 방지 및 웹 성능 최적화[cite: 3]
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+2. **React + TypeScript 기반의 모던 웹**
+   - Single Page Application(SPA) 방식을 채택하여 진입점 파일(`src/main.tsx`)을 통한 유연한 컴포넌트 확장 가능[cite: 3]
+   - 타입 안정성을 갖춘 TypeScript로 반응형 가이드 인터페이스 구축[cite: 3]
+
+---
+
+## 📂 프로젝트 구조 (Directory Structure)
+
+```text
+.
+├── public/
+│   └── favicon.svg       # 웹 사이트 파비콘[cite: 3]
+├── src/
+│   ├── main.tsx          # React 애플리케이션 진입점 (Entry Point)[cite: 3]
+│   └── ...               # 컴포넌트 및 페이지 관련 소스 파일
+├── index_3.html          # 메인 HTML 템플릿[cite: 3]
+└── README.md             # 프로젝트 안내 문서
