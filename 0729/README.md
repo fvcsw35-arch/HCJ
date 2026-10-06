@@ -10,6 +10,8 @@
 본 프로젝트는 한국 부산의 다양한 매력과 관광지 정보를 일본어로 제공하는 글로벌 웹 가이드 서비스입니다.  
 React와 Vite 환경을 활용하여 빠른 로딩 속도를 구현하였으며, Google Fonts의 일본어 특화 폰트(Shippori Mincho, M PLUS Rounded 1c) 및 영문 세리프 폰트를 적용하여 시각적으로 완성도 높은 디자인을 제공합니다.
 
+index.html은 여기 주소로 들어가시면 됩니다.
+- https://busan-guide-info.netlify.app/
 ---
 
 ## 🛠️ 기술 스택 (Tech Stack)
